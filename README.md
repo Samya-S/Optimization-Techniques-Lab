@@ -1,2 +1,1 @@
-# Optimization-Techniques-Lab
-Optimization Techniques Lab (MA39207)
+# Optimization Techniques Lab (MA39207)
