@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
+int main() {
     int n;
     // cout << "Enter the number of equations: ";
     cin >> n;
     // cout << endl;
 
-    vector<vector<double>> a(n, vector<double> (n, 0));
+    vector<vector<double>> a(n, vector<double>(n, 0));
     vector<double> b(n, 0);
 
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             // cout << "a[" << i << ", " << j << "] = ";
             cin >> a[i][j];
         }
@@ -28,7 +28,8 @@ int main(){
     }
 
     // cout << endl << "Enter the no. of iteration(s) : ";
-    int iter; cin >> iter;
+    int iter;
+    cin >> iter;
     // cout << endl;
 
     // cout << endl << "Enter the allowed error: ";
@@ -37,7 +38,7 @@ int main(){
 
     int error = 1e9;
     while (iter--) {
-    // do {
+        // do {
         for (int i = 0; i < n; i++) {
             y[i] = (b[i] / a[i][i]);
             for (int j = 0; j < n; j++) {
@@ -50,7 +51,7 @@ int main(){
             cout << "x" << i + 1 << " = " << fixed << setprecision(6) << y[i] << " ";
         }
         cout << endl;
-    // } while(error > delta);
+        // } while(error > delta);
     }
 
     return 0;
