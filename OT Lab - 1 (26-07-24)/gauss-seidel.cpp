@@ -3,33 +3,33 @@ using namespace std;
 
 int main(){
     int n;
-    cout << "Enter the number of equations: ";
+    // cout << "Enter the number of equations: ";
     cin >> n;
-    cout << endl;
+    // cout << endl;
 
     vector<vector<double>> a(n, vector<double> (n, 0));
     vector<double> b(n, 0);
 
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            cout << "a[" << i << ", " << j << "] = ";
+            // cout << "a[" << i << ", " << j << "] = ";
             cin >> a[i][j];
         }
-        cout << "b[" << i << "] = ";
+        // cout << "b[" << i << "] = ";
         cin >> b[i];
-        cout << endl;
+        // cout << endl;
     }
 
     vector<double> x(n, 0), y(n, 0);
-    cout << "Enter initial values of x" << endl;
+    // cout << "Enter initial values of x" << endl;
     for (int i = 0; i < n; i++) {
-        cout << "x:[" << i << "] = ";
+        // cout << "x:[" << i << "] = ";
         cin >> x[i];
     }
 
-    cout << endl << "Enter the no. of iteration(s) : ";
+    // cout << endl << "Enter the no. of iteration(s) : ";
     int iter; cin >> iter;
-    cout << endl;
+    // cout << endl;
 
     // cout << endl << "Enter the allowed error: ";
     // int delta; cin >> delta;
