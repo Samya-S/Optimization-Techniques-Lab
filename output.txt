@@ -1,5 +1,2 @@
-Max iterations reached without convergence.
-Solution:
-x1 = -0.218479
-x2 = 1.05542
-x3 = -0.670775
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
