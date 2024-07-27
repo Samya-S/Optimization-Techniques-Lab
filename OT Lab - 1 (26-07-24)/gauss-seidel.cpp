@@ -46,6 +46,7 @@ int main() {
     }
 
     vector<double> x(n, 0), y(n, 0);
+
     // cout << "Enter initial values of x" << endl;
     for (int i = 0; i < n; i++) {
         // cout << "x:[" << i << "] = ";
@@ -58,25 +59,44 @@ int main() {
     // cout << endl;
 
     // cout << endl << "Enter the allowed error: ";
-    // int delta; cin >> delta;
+    int delta;
+    cin >> delta;
     // cout << endl;
 
-    int error = 1e9;
-    while (iter--) {
-        // do {
+    // int count = 0;
+    double maxError = 0;
+    do {
         for (int i = 0; i < n; i++) {
-            y[i] = (b[i] / a[i][i]);
+            // y[i] = (b[i] / a[i][i]);
+            y[i] = b[i];
             for (int j = 0; j < n; j++) {
-                if (j == i)
-                    continue;
-                y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
-                x[i] = y[i];
+            //     if (j == i)
+            //         continue;
+            //     y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
+            //     // x[i] = y[i];
+            // }
+
+                if (i != j) {
+                    y[i] -= a[i][j] * x[j];
+                }
             }
-            // error = max(error, )
+            y[i] /= a[i][i];
+        }
+
+        maxError = 0;
+        for (int i = 0; i < n; i++) {
+            maxError = max(maxError, abs(x[i] - y[i]));
+            x[i] = y[i];
+            // cout << "x" << i + 1 << " = " << y[i] << " ";
             cout << "x" << i + 1 << " = " << fixed << setprecision(6) << y[i] << " ";
         }
         cout << endl;
-        // } while(error > delta);
+        // count++;
+    } while (maxError > delta);
+
+    cout << "The final solution is:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "x[" << i << "] = " << x[i] << endl;
     }
 
     return 0;
