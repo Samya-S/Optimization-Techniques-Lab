@@ -19,25 +19,25 @@ bool isDiagonallyDominantMatrix(vector<vector<double>> a) {
 
 int main() {
     int n;
-    // cout << "Enter the number of equations: ";
+    cout << "Enter the number of equations: ";
     cin >> n;
-    // cout << endl;
+    cout << endl;
 
     vector<vector<double>> a(n, vector<double>(n, 0));
     vector<double> b(n, 0);
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            // cout << "a[" << i << ", " << j << "] = ";
+            cout << "a[" << i << ", " << j << "] = ";
             cin >> a[i][j];
         }
     }
 
     for (int i = 0; i < n; i++) {
-        // cout << "b[" << i << "] = ";
+        cout << "b[" << i << "] = ";
         cin >> b[i];
-        // cout << endl;
     }
+    cout << endl;
 
     if (!isDiagonallyDominantMatrix(a)) {
         cout << "The matrix is not diagonally dominant." << endl;
@@ -45,59 +45,47 @@ int main() {
         return 0;
     }
 
-    vector<double> x(n, 0), y(n, 0);
+    vector<double> x(n, 0);
 
-    // cout << "Enter initial values of x" << endl;
+    cout << "Enter initial values of x" << endl;
     for (int i = 0; i < n; i++) {
-        // cout << "x:[" << i << "] = ";
+        cout << "x:[" << i << "] = ";
         cin >> x[i];
     }
 
-    // cout << endl << "Enter the no. of iteration(s) : ";
-    int iter;
-    cin >> iter;
-    // cout << endl;
-
-    // cout << endl << "Enter the allowed error: ";
-    int delta;
+    cout << endl << "Enter the allowed error: ";
+    double delta;
     cin >> delta;
-    // cout << endl;
+    cout << endl;
 
-    // int count = 0;
-    double maxError = 0;
+    double error;
     do {
+        vector<double> prev, y(n);
+        prev = x;
         for (int i = 0; i < n; i++) {
-            // y[i] = (b[i] / a[i][i]);
-            y[i] = b[i];
+            y[i] = (b[i] / a[i][i]);
             for (int j = 0; j < n; j++) {
-            //     if (j == i)
-            //         continue;
-            //     y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
-            //     // x[i] = y[i];
-            // }
-
-                if (i != j) {
-                    y[i] -= a[i][j] * x[j];
-                }
+                if (j != i)
+                    y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
             }
-            y[i] /= a[i][i];
-        }
-
-        maxError = 0;
-        for (int i = 0; i < n; i++) {
-            maxError = max(maxError, abs(x[i] - y[i]));
             x[i] = y[i];
-            // cout << "x" << i + 1 << " = " << y[i] << " ";
             cout << "x" << i + 1 << " = " << fixed << setprecision(6) << y[i] << " ";
+            // cout << "x" << i + 1 << " = " << y[i] << " ";
         }
         cout << endl;
-        // count++;
-    } while (maxError > delta);
 
+        error = 0;
+        for (int i = 0; i < n; i++) {
+            error += pow(prev[i]-x[i], 2);
+        }
+    } while(sqrtl(error) > delta);
+
+    cout << endl;
     cout << "The final solution is:" << endl;
     for (int i = 0; i < n; i++) {
         cout << "x[" << i << "] = " << x[i] << endl;
     }
+    cout << endl;
 
     return 0;
 }
