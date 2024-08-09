@@ -1,17 +1,54 @@
-Enter the number of equations: 
-a[0, 0] = a[0, 1] = a[0, 2] = a[1, 0] = a[1, 1] = a[1, 2] = a[2, 0] = a[2, 1] = a[2, 2] = b[0] = b[1] = b[2] = 
-Enter initial values of x
-x:[0] = x:[1] = x:[2] = 
-Enter the allowed error: 
-x1 = -0.571429 x2 = 1.392857 x3 = -0.829365 
-x1 = -0.092971 x2 = 0.962231 x3 = -0.611402 
-x1 = -0.246387 x2 = 1.082321 x3 = -0.683291 
-x1 = -0.205190 x2 = 1.045063 x3 = -0.664543 
-x1 = -0.218479 x2 = 1.055416 x3 = -0.670775 
-x1 = -0.214932 x2 = 1.052192 x3 = -0.669163 
-
+x1=0 x2=0 x3=? x4=? 
+Given equations:
+2x3 + 1x4 = 3
+4x3 + 6x4 = 2
+Considering initial values: x3=0 x4=0 
 The final solution is:
-x[0] = -0.214932
-x[1] = 1.052192
-x[2] = -0.669163
+x3 = 1.99977
+x4 = -0.999848
+This is a non-degenerate basic solution but not feasible.
+
+x1=0 x2=? x3=0 x4=? 
+Given equations:
+6x2 + 1x4 = 3
+4x2 + 6x4 = 2
+Considering initial values: x2=0 x4=0 
+The final solution is:
+x2 = 0.5
+x4 = 0
+This is a degenerate basic solution and feasible.
+
+x1=0 x2=? x3=? x4=0 
+Given equations:
+6x2 + 2x3 = 3
+4x2 + 4x3 = 2
+Considering initial values: x2=0 x3=0 
+The final solution is:
+x2 = 0.5
+x3 = 0
+This is a degenerate basic solution and feasible.
+
+x1=? x2=0 x3=0 x4=? 
+Given equations:
+2x1 + 1x4 = 3
+6x1 + 6x4 = 2
+Considering initial values: x1=0 x4=0 
+The final solution is:
+x1 = 2.6661
+x4 = -2.33276
+This is a non-degenerate basic solution but not feasible.
+
+x1=? x2=0 x3=? x4=0 
+Given equations:
+2x1 + 2x3 = 3
+6x1 + 4x3 = 2
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
+
+x1=? x2=? x3=0 x4=0 
+Given equations:
+2x1 + 6x2 = 3
+6x1 + 4x2 = 2
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
 

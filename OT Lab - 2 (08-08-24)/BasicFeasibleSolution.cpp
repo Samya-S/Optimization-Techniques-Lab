@@ -5,6 +5,7 @@ long fact(long n){
     if(n < 2) return 1;
     return n * fact(n-1);
 }
+
 long nCr(int n,int r){
     return fact(n)/(fact(r)*fact(n-r));
 }
@@ -25,47 +26,55 @@ bool isDiagonallyDominantMatrix(vector<vector<double>> a) {
     return true;
 }
 
-void reorder(vector<vector<double>> &a, vector<double> &b){
+// void reorder(vector<vector<double>> &a, vector<double> &b){
+//     int n = a.size();
+//
+//     vector<vector<double>> a1(n);
+//     vector<double> b1(n);
+//
+//     for(int i=0; i<n; i++){
+//         int maxInd = max_element(a[i].begin(), a[i].end()) - a[i].begin();
+//         a1[maxInd] = a[i];
+//         b1[maxInd] = b[i];
+//     }
+//
+//     a = a1; b = b1;
+//
+//     // cout << "new equations:" << endl;
+//     // for(int i=0; i<n; i++){
+//     //     for(int j=0; j<n; j++){
+//     //         cout << a[i][j] << "x" << j+1 << " ";
+//     //         if(j!=n-1) cout << "+ ";
+//     //         else cout << "= ";
+//     //     }
+//     //     cout << b[i] << endl;
+//     // }
+//
+//     return;
+// }
+
+void gaussSeidel(vector<vector<double>> &a, vector<double> &b, vector<int> &perm){
     int n = a.size();
 
-    vector<vector<double>> a1(n);
-    vector<double> b1(n);
+    int varCnt = perm.size();
+    vector<int> vals;
 
-    for(int i=0; i<n; i++){
-        int maxInd = max_element(a[i].begin(), a[i].end()) - a[i].begin();
-        a1[maxInd] = a[i];
-        b1[maxInd] = b[i];
+    for(int i=0; i<varCnt; i++){
+        if(perm[i] == 1) 
+            vals.push_back(i+1);
     }
-
-    a = a1; b = b1;
-
-    // cout << "new equations:" << endl;
-    // for(int i=0; i<n; i++){
-    //     for(int j=0; j<n; j++){
-    //         cout << a[i][j] << "x" << j+1 << " ";
-    //         if(j!=n-1) cout << "+ ";
-    //         else cout << "= ";
-    //     }
-    //     cout << b[i] << endl;
-    // }
-
-    return;
-}
-
-void gaussSeidel(vector<vector<double>> &a, vector<double> &b){
-    int n = a.size();
 
     cout << "Given equations:" << endl;
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            cout << a[i][j] << "x" << j+1 << " ";
+            cout << a[i][j] << "x" << vals[j] << " ";
             if(j!=n-1) cout << "+ ";
             else cout << "= ";
         }
         cout << b[i] << endl;
     }
 
-    reorder(a, b);
+    // reorder(a, b);
 
     if (!isDiagonallyDominantMatrix(a)) {
         cout << "The matrix is not diagonally dominant." << endl;
@@ -75,16 +84,13 @@ void gaussSeidel(vector<vector<double>> &a, vector<double> &b){
 
     vector<double> x(n, 0);
 
-    cout << "Enter initial values of x" << endl;
+    cout << "Considering initial values: ";
     for (int i = 0; i < n; i++) {
-        cout << "x:[" << i << "] = ";
-        cin >> x[i];
+        cout << "x" << vals[i] << "=" << x[i] << " ";
     }
-
-    // cout << endl << "Enter the allowed error: ";
-    double delta = 0.01; 
-    // cin >> delta;
     cout << endl;
+
+    double delta = 0.001; // maximum allowed error
 
     double error;
     do {
@@ -97,10 +103,10 @@ void gaussSeidel(vector<vector<double>> &a, vector<double> &b){
                     y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
             }
             x[i] = y[i];
-            cout << "x" << i + 1 << " = " << fixed << setprecision(6) << y[i] << " ";
-            // cout << "x" << i + 1 << " = " << y[i] << " ";
+            // cout << "x" << vals[i] << " = " << fixed << setprecision(6) << y[i] << " ";
+            // cout << "x" << vals[i] << " = " << y[i] << " ";
         }
-        cout << endl;
+        // cout << endl;
 
         error = 0;
         for (int i = 0; i < n; i++) {
@@ -108,12 +114,40 @@ void gaussSeidel(vector<vector<double>> &a, vector<double> &b){
         }
     } while(sqrtl(error) > delta);
 
-    cout << endl;
+    // cout << endl;
+
     cout << "The final solution is:" << endl;
     for (int i = 0; i < n; i++) {
-        cout << "x[" << i << "] = " << x[i] << endl;
+        cout << "x" << vals[i] << " = " << x[i] << endl;
+        // cout << "x" << vals[i] << " = " << fixed << setprecision(6) << x[i] << endl;
     }
-    cout << endl;
+    // cout << endl;
+
+    // vector<double> ans(varCnt, 0);
+    // for(int i=0; i<n; i++){
+    //     ans[vals[i]-1] = x[i];
+    // }  
+
+    bool flag = false;
+    int cnt = 0;
+
+    for(auto it:x){
+        if(it < 0) flag = true;
+        if(it == 0) cnt++;
+    }
+
+    if((cnt-n+varCnt) == n) {
+        if(flag) cout << "This is a non-degenerate basic solution but not feasible." << endl;
+        else cout << "This is a nondegenerate basic solution and feasible." << endl;
+    }
+    else if(cnt){
+        if(flag) cout << "This is a degenerate basic solution but not feasible." << endl;
+        else cout << "This is a degenerate basic solution and feasible." << endl; 
+    }
+    else {
+        if(flag) cout << "This is a basic solution but not feasible." << endl;
+        else cout << "This is a basic solution and feasible." << endl; 
+    }
 
     return;
 }
@@ -126,6 +160,10 @@ int main() {
     // cout << "Enter the number of equations: ";
     int m; cin >> m;
     // cout << endl;
+
+    bool isInequality;
+    // cout << "type 1 if it is a inequality else type 0: ";
+    cin >> isInequality;
 
     vector<vector<double>> a(m, vector<double>(n, 0));
     vector<double> b(m, 0);
@@ -159,11 +197,12 @@ int main() {
 
         for(int i=0; i<m; i++){
             for(int j=0; j<n; j++){
-                if(perm[j]==1) a1[i].push_back(a[i][j]);
+                if(perm[j]==1) 
+                    a1[i].push_back(a[i][j]);
             }
         }
         
-        gaussSeidel(a1, b);
+        gaussSeidel(a1, b, perm);        
 
         cout << endl;
     } while(next_permutation(perm.begin(), perm.end()));
