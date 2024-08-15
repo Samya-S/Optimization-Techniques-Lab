@@ -113,7 +113,7 @@ void gaussSeidel(vector<vector<double>> &a, vector<double> &b, vector<int> &perm
         for (int i=0; i<m; i++) {
             error += pow(prev[i]-x[i], 2);
         }
-    } while(sqrtl(error) > delta || iterations--);
+    } while(sqrtl(error) > delta && iterations--);
 
     // cout << endl;
 
