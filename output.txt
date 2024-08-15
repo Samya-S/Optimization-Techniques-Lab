@@ -1,54 +1,84 @@
-x1=0 x2=0 x3=? x4=? 
-Given equations:
-2x3 + 1x4 = 3
-4x3 + 6x4 = 2
-Considering initial values: x3=0 x4=0 
-The final solution is:
-x3 = 1.99977
-x4 = -0.999848
-This is a non-degenerate basic solution but not feasible.
+WE WILL USE 2 SLACK VARIABLES HERE
 
-x1=0 x2=? x3=0 x4=? 
+x1=0 x2=0 x3=0 x4=? x5=? 
 Given equations:
-6x2 + 1x4 = 3
-4x2 + 6x4 = 2
-Considering initial values: x2=0 x4=0 
+1x4 + 0x5 = 20
+0x4 + 1x5 = 15
+Considering initial values: x4=0 x5=0 
 The final solution is:
-x2 = 0.5
-x4 = 0
-This is a degenerate basic solution and feasible.
+x4 = 20
+x5 = 15
+This is a basic solution and feasible.
 
-x1=0 x2=? x3=? x4=0 
+x1=0 x2=0 x3=? x4=0 x5=? 
 Given equations:
-6x2 + 2x3 = 3
-4x2 + 4x3 = 2
-Considering initial values: x2=0 x3=0 
-The final solution is:
-x2 = 0.5
-x3 = 0
-This is a degenerate basic solution and feasible.
-
-x1=? x2=0 x3=0 x4=? 
-Given equations:
-2x1 + 1x4 = 3
-6x1 + 6x4 = 2
-Considering initial values: x1=0 x4=0 
-The final solution is:
-x1 = 2.6661
-x4 = -2.33276
-This is a non-degenerate basic solution but not feasible.
-
-x1=? x2=0 x3=? x4=0 
-Given equations:
-2x1 + 2x3 = 3
-6x1 + 4x3 = 2
+3x3 + 0x5 = 20
+2x3 + 1x5 = 15
 The matrix is not diagonally dominant.
 The Gauss-Seidel method may not converge.
 
-x1=? x2=? x3=0 x4=0 
+x1=0 x2=0 x3=? x4=? x5=0 
 Given equations:
-2x1 + 6x2 = 3
-6x1 + 4x2 = 2
+3x3 + 1x4 = 20
+2x3 + 0x4 = 15
 The matrix is not diagonally dominant.
 The Gauss-Seidel method may not converge.
+
+x1=0 x2=? x3=0 x4=0 x5=? 
+Given equations:
+2x2 + 0x5 = 20
+-3x2 + 1x5 = 15
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
+
+x1=0 x2=? x3=0 x4=? x5=0 
+Given equations:
+2x2 + 1x4 = 20
+-3x2 + 0x4 = 15
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
+
+x1=0 x2=? x3=? x4=0 x5=0 
+Given equations:
+2x2 + 3x3 = 20
+-3x2 + 2x3 = 15
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
+
+x1=? x2=0 x3=0 x4=0 x5=? 
+Given equations:
+4x1 + 0x5 = 20
+1x1 + 1x5 = 15
+Considering initial values: x1=0 x5=0 
+The final solution is:
+x1 = 5
+x5 = 10
+This is a basic solution and feasible.
+
+x1=? x2=0 x3=0 x4=? x5=0 
+Given equations:
+4x1 + 1x4 = 20
+1x1 + 0x4 = 15
+The matrix is not diagonally dominant.
+The Gauss-Seidel method may not converge.
+
+x1=? x2=0 x3=? x4=0 x5=0 
+Given equations:
+4x1 + 3x3 = 20
+1x1 + 2x3 = 15
+Considering initial values: x1=0 x3=0 
+The final solution is:
+x1 = -1
+x3 = 8
+This is a basic solution but not feasible.
+
+x1=? x2=? x3=0 x4=0 x5=0 
+Given equations:
+4x1 + 2x2 = 20
+1x1 + -3x2 = 15
+Considering initial values: x1=0 x2=0 
+The final solution is:
+x1 = 6.42857
+x2 = -2.85714
+This is a basic solution but not feasible.
 
