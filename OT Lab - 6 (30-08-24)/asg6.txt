@@ -1,0 +1,10 @@
+Modify your Assignment 5 code to address unbounded solution, degenerate solution, infeasible solution.
+
+Book chapter is uploaded here. You go through this for reference.
+
+Output:
+The problem is suitable for Simplex method or not.
+Optimal solution
+Optimal value
+Pivot element of every iteration
+Most negative Del_j in every iteration
