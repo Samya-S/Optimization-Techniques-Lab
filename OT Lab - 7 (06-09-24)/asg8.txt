@@ -1,0 +1,11 @@
+Assignment 8: Use previous codes and write a new code so that for any linear programming problem you can get the answer as follows. Your code should address all types of constraints like greater than equal to, less than equal to, and equal to. variables may be unrestricted. Objective function may be minimization type or maximum type. 
+
+Which method to be used?
+
+Does an alternate solution exist? If so what is another solution?
+
+Degeneracy occurs or not. If occurs then break degeneracy and get the solution.
+
+No solution exists.
+
+Output should provide the entire iterations.

@@ -1,0 +1,8 @@
+Write code for Big M method. Address Unbounded solution, No solution, the existence of alternate solution, degeneracy, break degeneracy, If yes break degeneracy and find solution.
+
+Output:
+Unbounded/Alternate/No solution and degeneracy occurs or not.
+Basic feasible solution at each iteration
+Objective value at each iteration
+Minimum ratio and Pivot element at each iteration
+Optimal solution and  Optimal value
