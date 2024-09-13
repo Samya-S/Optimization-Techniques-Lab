@@ -1,0 +1,7 @@
+This is the two-phase method to handle artificial variables id equal to or greater than equal to sign is present in the system.The first phase will delete the artificial variables and the second phase will lead to the optimal solution.
+
+For both phases, you have to modify the Simplex method code.
+
+The code should take care of degeneracy, infeasibility, unboundedness, and unrestricted variables.
+
+First, solve one problem manually. Then start the coding part. Test your code with the problems from the book chapter.
